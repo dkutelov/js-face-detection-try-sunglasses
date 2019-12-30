@@ -2,16 +2,19 @@ import React from "react"
 import styled from "styled-components"
 
 const Dot = styled.div`
-  width: 3px;
-  height: 3px;
+  font-size: 0.5em;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
-  color: red;
-  background-color: red;
   position: absolute;
-  top: ${props => `${props.x}px` || 0};
-  left: ${props => `${props.y}px` || 0};
+  top: ${props => `${props.y}px` || 0};
+  left: ${props => `${props.x}px` || 0};
 `
 
-const DrawDot = ({ x, y }) => <Dot x={x} y={y} />
+const DrawDot = ({ x, y, index }) => (
+  <Dot x={x} y={y}>
+    {index}
+  </Dot>
+)
 
 export default DrawDot
