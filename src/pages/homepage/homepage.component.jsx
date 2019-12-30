@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { Component } from "react"
 import * as faceapi from "face-api.js"
 
 // import componenets
@@ -8,6 +8,7 @@ import OverlayList from "../../components/overlay-list/overlay-list.component"
 import UploadPersonalPhoto from "../../components/upload-personal-photo/upload-personal-photo.component"
 //import FacePoints from "../../components/utils/face-points.component"
 
+import dk from "../../assets/dk.jpg"
 // import styled components
 import {
   ImagesOuterContainer,
@@ -22,16 +23,23 @@ import overlayData from "../../components/utils/overlaysData.js"
 import { getOverlayValues } from "../../components/utils/getOverlayValues"
 import shortenOverlayData from "../../components/utils/shortentOverlayData.js"
 
-const HomePage = () => {
-  const [personalPhoto, setPersonalPhoto] = useState(null)
+class HomePage extends Component {
+  state = {
+    personalPhoto: null,
+    overlayImg: null,
+    overlayValues: { scale: 1, width: null },
+    landmarks: null
+  }
 
-  const [overlayImg, setOverlayImg] = useState(null)
-  //   const [facePoints, setFacePoints] = useState([])
-  const [overlayValues, setOverlayValues] = useState({ scale: 1, width: null })
-  const [landmarks, setLandmarks] = useState(null)
-  //   const [overlayObj, setOverlayObj] = useState({})
+  setPersonalPhoto = async personalPhoto => {
+    await this.setState({
+      personalPhoto
+    })
+    this.loadModels()
+    console.log(this.state.landmarks)
+  }
 
-  async function loadModels() {
+  loadModels = async () => {
     await Promise.all([
       faceapi.nets.tinyFaceDetector.loadFromUri("/models"),
       faceapi.nets.faceLandmark68TinyNet.loadFromUri("/models")
@@ -40,6 +48,7 @@ const HomePage = () => {
     })
 
     const image = document.querySelector(".target-image")
+    console.log(image)
 
     const detection = await faceapi
       .detectSingleFace(image, new faceapi.TinyFaceDetectorOptions())
@@ -48,52 +57,55 @@ const HomePage = () => {
     if (!detection) {
       return
     }
-    //   const points = detection.landmarks.positions
-    //   setFacePoints(points)
 
-    setLandmarks(detection.landmarks)
+    this.setState({ landmarks: detection.landmarks })
   }
 
-  const overlayItemClickHandler = id => {
+  overlayItemClickHandler = id => {
     const currentOvelayData = overlayData.filter(item => item.id === id)[0]
-    console.log(currentOvelayData)
 
     const overlay = {
       cp_offsets: currentOvelayData.cp_offsets,
       width: currentOvelayData.width
     }
     const image = document.querySelector(".target-image")
+    const { landmarks } = this.state
     const overlayValues = getOverlayValues(landmarks, image, overlay)
-    setOverlayValues(overlayValues)
-    setOverlayImg(currentOvelayData.overlayFile)
+    this.setState({
+      overlayValues,
+      overlayImg: currentOvelayData.overlayFile
+    })
   }
 
-  return (
-    <MainContainer>
-      <ImagesOuterContainer>
-        <ImagesContainer>
-          {personalPhoto ? (
-            <PersonalPhoto
-              personalPhoto={personalPhoto}
-              className="target-image"
-            />
-          ) : (
-            <UploadPersonalPhoto setPersonalPhoto={setPersonalPhoto} />
-          )}
-          {personalPhoto && overlayImg && (
-            <OverlayImage
-              overlayImg={overlayImg}
-              overlayValues={overlayValues}
-            />
-          )}
-        </ImagesContainer>
-      </ImagesOuterContainer>
-      <OverlayList
-        overlayItems={shortenOverlayData(overlayData)}
-        onOverlayItemClick={overlayItemClickHandler}
-      />
-    </MainContainer>
-  )
+  render() {
+    const { personalPhoto, overlayImg, overlayValues } = this.state
+    return (
+      <MainContainer>
+        <ImagesOuterContainer>
+          <ImagesContainer>
+            {personalPhoto ? (
+              <PersonalPhoto
+                personalPhoto={personalPhoto}
+                className="target-image"
+              />
+            ) : (
+              <UploadPersonalPhoto setPersonalPhoto={this.setPersonalPhoto} />
+            )}
+            {personalPhoto && overlayImg && (
+              <OverlayImage
+                overlayImg={overlayImg}
+                overlayValues={overlayValues}
+              />
+            )}
+          </ImagesContainer>
+        </ImagesOuterContainer>
+        <OverlayList
+          overlayItems={shortenOverlayData(overlayData)}
+          onOverlayItemClick={this.overlayItemClickHandler}
+        />
+      </MainContainer>
+    )
+  }
 }
 
 //<FacePoints facePoints={facePoints} overlayValues={overlayValues} />
