@@ -15,7 +15,7 @@ export default [
     overlayFile: overlayUrl1,
     cp_offsets: {
       cp_x: 220,
-      cp_y: 25
+      cp_y: 15
     },
     width: 448
   },
@@ -23,8 +23,8 @@ export default [
     id: 1,
     overlayFile: overlayUrl2,
     cp_offsets: {
-      cp_x: 285,
-      cp_y: 30
+      cp_x: 280,
+      cp_y: 20
     },
     width: 568
   },
@@ -32,8 +32,8 @@ export default [
     id: 2,
     overlayFile: overlayUrl3,
     cp_offsets: {
-      cp_x: 470,
-      cp_y: 50
+      cp_x: 465,
+      cp_y: 40
     },
     width: 940
   },

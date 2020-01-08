@@ -3,9 +3,10 @@ import styled from "styled-components"
 export const MainContainer = styled.div`
   display: grid;
   grid-template-columns: 400px 1fr;
-  grid-gap: 20px;
-  margin-left: 10%;
-  margin-right: 10%;
+  grid-gap: 40px;
+  margin: 0 auto;
+  width: 80%;
+  max-width: 1380px;
 `
 
 export const ImagesOuterContainer = styled.div`

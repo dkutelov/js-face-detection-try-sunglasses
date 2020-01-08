@@ -10,4 +10,12 @@ app and file structure
 # detect width of the face and set  width of the sunglasses img
 - dot 0 and dot 16 set width of the face
 - coordinates need to be scaled to the original image
+
+TO DO
+- upload icon and styling
+- loaders / disable getOverlayValues if no landmarks
+- overall styling and mobile
 - think about rotation ? 0 and 16 delta of y
+- optional - animation on overlay
+- deploy
+

@@ -3,11 +3,11 @@ import { OverlayImage } from "./overlay-image.styles"
 
 const OverlayImageContainer = ({
   overlayImg,
-  overlayValues: { width, leftOffset, topOffset }
+  overlayValues: { overlayWidth, leftOffset, topOffset }
 }) => (
   <OverlayImage
     src={overlayImg}
-    imageWidth={width}
+    imageWidth={overlayWidth}
     leftOffset={leftOffset}
     topOffset={topOffset}
     className="overlay-image"

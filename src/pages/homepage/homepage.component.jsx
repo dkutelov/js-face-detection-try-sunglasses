@@ -8,7 +8,6 @@ import OverlayList from "../../components/overlay-list/overlay-list.component"
 import UploadPersonalPhoto from "../../components/upload-personal-photo/upload-personal-photo.component"
 //import FacePoints from "../../components/utils/face-points.component"
 
-import dk from "../../assets/dk.jpg"
 // import styled components
 import {
   ImagesOuterContainer,
@@ -27,16 +26,17 @@ class HomePage extends Component {
   state = {
     personalPhoto: null,
     overlayImg: null,
-    overlayValues: { scale: 1, width: null },
-    landmarks: null
+    overlayValues: { scale: 1, overlayWidth: null },
+    landmarks: null,
+    loading: false
   }
 
   setPersonalPhoto = async personalPhoto => {
+    this.setState({ loading: true })
     await this.setState({
       personalPhoto
     })
     this.loadModels()
-    console.log(this.state.landmarks)
   }
 
   loadModels = async () => {
@@ -48,7 +48,6 @@ class HomePage extends Component {
     })
 
     const image = document.querySelector(".target-image")
-    console.log(image)
 
     const detection = await faceapi
       .detectSingleFace(image, new faceapi.TinyFaceDetectorOptions())
@@ -58,10 +57,14 @@ class HomePage extends Component {
       return
     }
 
-    this.setState({ landmarks: detection.landmarks })
+    this.setState({ landmarks: detection.landmarks, loading: false })
   }
 
   overlayItemClickHandler = id => {
+    if (!this.state.landmarks) {
+      return
+    }
+
     const currentOvelayData = overlayData.filter(item => item.id === id)[0]
 
     const overlay = {
@@ -71,6 +74,7 @@ class HomePage extends Component {
     const image = document.querySelector(".target-image")
     const { landmarks } = this.state
     const overlayValues = getOverlayValues(landmarks, image, overlay)
+
     this.setState({
       overlayValues,
       overlayImg: currentOvelayData.overlayFile
@@ -78,7 +82,7 @@ class HomePage extends Component {
   }
 
   render() {
-    const { personalPhoto, overlayImg, overlayValues } = this.state
+    const { personalPhoto, overlayImg, overlayValues, loading } = this.state
     return (
       <MainContainer>
         <ImagesOuterContainer>
@@ -100,6 +104,7 @@ class HomePage extends Component {
           </ImagesContainer>
         </ImagesOuterContainer>
         <OverlayList
+          loading={loading}
           overlayItems={shortenOverlayData(overlayData)}
           onOverlayItemClick={this.overlayItemClickHandler}
         />
