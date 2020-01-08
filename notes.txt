@@ -1,21 +1,9 @@
-app and file structure
-
-- page:
-    state: personal photo and selected sunglasses
-    -> display Container
-        -> Component: display-photo or upload photo
-        -> component: selected sunglasses
-    -> grid or slide show of glasses
-
-# detect width of the face and set  width of the sunglasses img
-- dot 0 and dot 16 set width of the face
-- coordinates need to be scaled to the original image
-
-TO DO
-- upload icon and styling
-- loaders / disable getOverlayValues if no landmarks
-- overall styling and mobile
-- think about rotation ? 0 and 16 delta of y
+TO DO:
+- try another photo functionality
+- face size options
+- sunglasses location adjustment (4 buttons)
+- mobile styling
+- angle
 - optional - animation on overlay
 - deploy
 
