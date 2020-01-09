@@ -22,13 +22,21 @@ import overlayData from "../../components/utils/overlaysData.js"
 import { getOverlayValues } from "../../components/utils/getOverlayValues"
 import shortenOverlayData from "../../components/utils/shortentOverlayData.js"
 
+const initialValues = {
+  personalPhoto: null,
+  overlayImg: null,
+  overlayValues: { scale: 1, overlayWidth: null },
+  landmarks: null,
+  loading: false
+}
+
 class HomePage extends Component {
   state = {
-    personalPhoto: null,
-    overlayImg: null,
-    overlayValues: { scale: 1, overlayWidth: null },
-    landmarks: null,
-    loading: false
+    ...initialValues
+  }
+
+  resetForNewPhoto = () => {
+    this.setState({ ...initialValues })
   }
 
   setPersonalPhoto = async personalPhoto => {
@@ -90,6 +98,8 @@ class HomePage extends Component {
             {personalPhoto ? (
               <PersonalPhoto
                 personalPhoto={personalPhoto}
+                resetForNewPhoto={this.resetForNewPhoto}
+                loading={loading}
                 className="target-image"
               />
             ) : (

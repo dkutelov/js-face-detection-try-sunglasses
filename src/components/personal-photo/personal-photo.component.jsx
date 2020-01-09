@@ -6,10 +6,12 @@ import {
 
 import { Button } from "../utils/button.styles"
 
-const PersonalPhoto = ({ personalPhoto }) => (
+const PersonalPhoto = ({ personalPhoto, resetForNewPhoto, loading }) => (
   <PersonalPhotoImageContainer>
     <PersonalPhotoImage src={personalPhoto} className="target-image" />
-    <Button block>Try Another Photo</Button>
+    <Button block onClick={resetForNewPhoto} disabled={loading}>
+      Try Another Photo
+    </Button>
   </PersonalPhotoImageContainer>
 )
 

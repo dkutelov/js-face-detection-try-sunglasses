@@ -6,4 +6,5 @@ export const OverlayImage = styled.img`
   top: ${props => `${props.topOffset}px`};
   left: ${props => `${props.leftOffset}px`};
   width: ${props => `${props.imageWidth}px`};
+  transform: rotate(${props => `${props.angle}deg`});
 `

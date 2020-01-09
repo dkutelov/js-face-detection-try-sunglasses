@@ -1,9 +1,11 @@
 TO DO:
-- try another photo functionality
+- try another photo functionality - DONE
 - face size options
 - sunglasses location adjustment (4 buttons)
 - mobile styling
-- angle
+- angle - DONE
 - optional - animation on overlay
+- offsets adjustment when rotated
+- galery of preset images to have fun
 - deploy
 

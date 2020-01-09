@@ -8,7 +8,7 @@ export function getOverlayValues(landmarks, image, overlay) {
   const adjacent = jawRight.x - jawLeft.x
   const opposite = jawRight.y - jawLeft.y
   const faceWidth = Math.sqrt(Math.pow(adjacent, 2) + Math.pow(opposite, 2))
-
+  const angle = Math.atan2(opposite, adjacent) * (180 / Math.PI)
   // calc center point coordinates
   const a_x = landmarks.positions[21]._x
   const b_x = landmarks.positions[22]._x
@@ -25,8 +25,6 @@ export function getOverlayValues(landmarks, image, overlay) {
 
   const leftOffset = center_point_x - overlay.cp_offsets.cp_x * overlayScale
   const topOffset = center_point_y - overlay.cp_offsets.cp_y * overlayScale
-
-  const angle = 0
 
   return {
     overlayWidth: faceWidth * scale,
