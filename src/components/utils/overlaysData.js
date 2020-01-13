@@ -14,28 +14,31 @@ export default [
     id: 0,
     overlayFile: overlayUrl1,
     cp_offsets: {
-      cp_x: 220,
-      cp_y: 15
+      cp_x: 224,
+      cp_y: 35
     },
-    width: 448
+    width: 448,
+    verticalRotationPoint: 27
   },
   {
     id: 1,
     overlayFile: overlayUrl2,
     cp_offsets: {
       cp_x: 280,
-      cp_y: 20
+      cp_y: 40
     },
-    width: 568
+    width: 568,
+    verticalRotationPoint: 22
   },
   {
     id: 2,
     overlayFile: overlayUrl3,
     cp_offsets: {
       cp_x: 465,
-      cp_y: 40
+      cp_y: 74
     },
-    width: 940
+    width: 940,
+    verticalRotationPoint: 25
   },
   {
     id: 3,
@@ -50,8 +53,8 @@ export default [
     id: 4,
     overlayFile: overlayUrl5,
     cp_offsets: {
-      cp_x: 420,
-      cp_y: 75
+      cp_x: 433,
+      cp_y: 81
     },
     width: 860
   },

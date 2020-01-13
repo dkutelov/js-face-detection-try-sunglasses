@@ -6,7 +6,7 @@ import PersonalPhoto from "../../components/personal-photo/personal-photo.compon
 import OverlayImage from "../../components/overlay-image/overlay-image.component"
 import OverlayList from "../../components/overlay-list/overlay-list.component"
 import UploadPersonalPhoto from "../../components/upload-personal-photo/upload-personal-photo.component"
-//import FacePoints from "../../components/utils/face-points.component"
+import FacePoints from "../../components/utils/face-points.component"
 
 // import styled components
 import {
@@ -27,7 +27,8 @@ const initialValues = {
   overlayImg: null,
   overlayValues: { scale: 1, overlayWidth: null },
   landmarks: null,
-  loading: false
+  loading: false,
+  facePoints: []
 }
 
 class HomePage extends Component {
@@ -64,8 +65,12 @@ class HomePage extends Component {
     if (!detection) {
       return
     }
-
-    this.setState({ landmarks: detection.landmarks, loading: false })
+    console.log(detection.landmarks)
+    this.setState({
+      landmarks: detection.landmarks,
+      loading: false,
+      facePoints: detection.landmarks.positions
+    })
   }
 
   overlayItemClickHandler = id => {
@@ -76,8 +81,7 @@ class HomePage extends Component {
     const currentOvelayData = overlayData.filter(item => item.id === id)[0]
 
     const overlay = {
-      cp_offsets: currentOvelayData.cp_offsets,
-      width: currentOvelayData.width
+      ...currentOvelayData
     }
     const image = document.querySelector(".target-image")
     const { landmarks } = this.state
@@ -90,7 +94,13 @@ class HomePage extends Component {
   }
 
   render() {
-    const { personalPhoto, overlayImg, overlayValues, loading } = this.state
+    const {
+      personalPhoto,
+      overlayImg,
+      overlayValues,
+      loading,
+      facePoints
+    } = this.state
     return (
       <MainContainer>
         <ImagesOuterContainer>

@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export const MainContainer = styled.div`
   display: grid;
-  grid-template-columns: 400px 1fr;
+  grid-template-columns: 600px 1fr;
   grid-gap: 40px;
   margin: 0 auto;
   width: 80%;
@@ -10,7 +10,7 @@ export const MainContainer = styled.div`
 `
 
 export const ImagesOuterContainer = styled.div`
-  width: 400px;
+  width: 100%;
   margin: 3rem auto;
 `
 

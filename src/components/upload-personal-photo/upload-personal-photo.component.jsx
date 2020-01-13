@@ -4,7 +4,7 @@ import { ReactComponent as UploadIcon } from "../../assets/upload-icon.svg"
 import { UploadIconContainer } from "./upload-presonal-photo.styles"
 import { Button } from "../utils/button.styles"
 
-import womenFace from "../../assets/woman_face.jpg"
+import womenFace from "../../assets/preset-faces/scarlett-left.jpg"
 
 const UploadPersonalPhoto = ({ setPersonalPhoto }) => {
   const uploadFile = e => {
@@ -15,10 +15,10 @@ const UploadPersonalPhoto = ({ setPersonalPhoto }) => {
     const data = new FormData()
     data.append("file", file[0])
     data.append("upload_preset", "sickfits")
-    fetch("https://api.cloudinary.com/v1_1/dariku/image/upload", {
-      method: "POST",
-      body: data
-    })
+    // fetch("https://api.cloudinary.com/v1_1/dariku/image/upload", {
+    //   method: "POST",
+    //   body: data
+    // })
 
     setPersonalPhoto(URL.createObjectURL(file[0]))
   }
