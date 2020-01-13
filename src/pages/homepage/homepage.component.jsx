@@ -6,7 +6,7 @@ import PersonalPhoto from "../../components/personal-photo/personal-photo.compon
 import OverlayImage from "../../components/overlay-image/overlay-image.component"
 import OverlayList from "../../components/overlay-list/overlay-list.component"
 import UploadPersonalPhoto from "../../components/upload-personal-photo/upload-personal-photo.component"
-import FacePoints from "../../components/utils/face-points.component"
+//import FacePoints from "../../components/utils/face-points.component"
 
 // import styled components
 import {
@@ -17,7 +17,7 @@ import {
 
 // import data
 import overlayData from "../../components/utils/overlaysData.js"
-
+import presetPhotos from "../../components/utils/presetphotosData.js"
 // functions import
 import { getOverlayValues } from "../../components/utils/getOverlayValues"
 import shortenOverlayData from "../../components/utils/shortentOverlayData.js"
@@ -65,7 +65,7 @@ class HomePage extends Component {
     if (!detection) {
       return
     }
-    console.log(detection.landmarks)
+
     this.setState({
       landmarks: detection.landmarks,
       loading: false,
@@ -94,13 +94,7 @@ class HomePage extends Component {
   }
 
   render() {
-    const {
-      personalPhoto,
-      overlayImg,
-      overlayValues,
-      loading,
-      facePoints
-    } = this.state
+    const { personalPhoto, overlayImg, overlayValues, loading } = this.state
     return (
       <MainContainer>
         <ImagesOuterContainer>
@@ -113,7 +107,10 @@ class HomePage extends Component {
                 className="target-image"
               />
             ) : (
-              <UploadPersonalPhoto setPersonalPhoto={this.setPersonalPhoto} />
+              <UploadPersonalPhoto
+                setPersonalPhoto={this.setPersonalPhoto}
+                presetPhotos={presetPhotos}
+              />
             )}
             {personalPhoto && overlayImg && (
               <OverlayImage

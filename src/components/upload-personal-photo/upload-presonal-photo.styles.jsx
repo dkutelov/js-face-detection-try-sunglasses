@@ -1,6 +1,7 @@
 import styled from "styled-components"
 
 export const UploadIconContainer = styled.div`
+  cursor: pointer;
   margin: 5px 0;
   width: 100%;
   height: 360px;

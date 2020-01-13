@@ -2,11 +2,9 @@ import React from "react"
 
 import { ReactComponent as UploadIcon } from "../../assets/upload-icon.svg"
 import { UploadIconContainer } from "./upload-presonal-photo.styles"
-import { Button } from "../utils/button.styles"
+import PresetphotosList from "../presetphotos-list/presetphotos-list.component"
 
-import womenFace from "../../assets/preset-faces/scarlett-left.jpg"
-
-const UploadPersonalPhoto = ({ setPersonalPhoto }) => {
+const UploadPersonalPhoto = ({ setPersonalPhoto, presetPhotos }) => {
   const uploadFile = e => {
     const file = e.target.files
 
@@ -23,13 +21,14 @@ const UploadPersonalPhoto = ({ setPersonalPhoto }) => {
     setPersonalPhoto(URL.createObjectURL(file[0]))
   }
 
-  const setDefaultFace = () => {
-    setPersonalPhoto(womenFace)
+  const setDefaultFace = id => {
+    const { presetImg } = presetPhotos.filter(item => item.id === id)[0]
+    setPersonalPhoto(presetImg)
   }
 
   return (
     <div>
-      <h1>Upload you face photo</h1>
+      <h1>Upload photo of your face</h1>
       <p>
         Should be unobstucted <em>front</em> face photo.
       </p>
@@ -46,10 +45,11 @@ const UploadPersonalPhoto = ({ setPersonalPhoto }) => {
           style={{ display: "none" }}
         />
       </label>
-      <h2>Or check out how they look on a nice lady's face</h2>
-      <Button block onClick={setDefaultFace}>
-        Nice lady's face
-      </Button>
+      <h2>or fave fun with these faces</h2>
+      <PresetphotosList
+        presetPhotos={presetPhotos}
+        setDefaultFace={setDefaultFace}
+      />
     </div>
   )
 }
