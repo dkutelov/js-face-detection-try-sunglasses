@@ -4,8 +4,9 @@ import preset3 from "../../assets/preset-faces/black.jpg"
 import preset4 from "../../assets/preset-faces/hugh.jpg"
 import preset5 from "../../assets/preset-faces/ariana.jpg"
 import preset6 from "../../assets/preset-faces/alan.jpg"
-import preset7 from "../../assets/preset-faces/scarlet.webp"
+import preset7 from "../../assets/preset-faces/kate_bb.jpeg"
 import preset8 from "../../assets/preset-faces/scarlett-left.jpg"
+import preset9 from "../../assets/preset-faces/ysuke.jpg"
 
 export default [
   {
@@ -22,26 +23,26 @@ export default [
   },
   {
     id: 3,
-    presetImg: preset3
-  },
-  {
-    id: 4,
     presetImg: preset4
   },
   {
-    id: 5,
+    id: 4,
     presetImg: preset5
   },
   {
-    id: 6,
+    id: 5,
     presetImg: preset6
   },
   {
-    id: 7,
+    id: 6,
     presetImg: preset7
   },
   {
-    id: 8,
+    id: 7,
     presetImg: preset8
+  },
+  {
+    id: 8,
+    presetImg: preset9
   }
 ]
