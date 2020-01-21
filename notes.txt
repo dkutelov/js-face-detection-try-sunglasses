@@ -2,7 +2,6 @@ TO DO:
 - intoduce context to reduce prop drilling
 - face size options
 - sunglasses location adjustment (4 buttons)
-- mobile styling
 - optional - animation on overlay
 - galery of preset images to have fun
 - deploy

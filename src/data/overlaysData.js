@@ -1,13 +1,13 @@
-import overlayUrl1 from "../../assets/sunglasses-1.png"
-import overlayUrl2 from "../../assets/sunglasses-2.png"
-import overlayUrl3 from "../../assets/sunglasses-3.png"
-import overlayUrl4 from "../../assets/sunglasses-4.png"
-import overlayUrl5 from "../../assets/sunglasses-5.png"
-import overlayUrl6 from "../../assets/sunglasses-6.png"
-import overlayUrl7 from "../../assets/sunglasses-7.png"
-import overlayUrl8 from "../../assets/sunglasses-8.png"
-import overlayUrl9 from "../../assets/sunglasses-9.png"
-import overlayUrl10 from "../../assets/sunglasses-10.png"
+import overlayUrl1 from "../assets/sunglasses-1.png"
+import overlayUrl2 from "../assets/sunglasses-2.png"
+import overlayUrl3 from "../assets/sunglasses-3.png"
+import overlayUrl4 from "../assets/sunglasses-4.png"
+import overlayUrl5 from "../assets/sunglasses-5.png"
+import overlayUrl6 from "../assets/sunglasses-6.png"
+import overlayUrl7 from "../assets/sunglasses-7.png"
+import overlayUrl8 from "../assets/sunglasses-8.png"
+import overlayUrl9 from "../assets/sunglasses-9.png"
+import overlayUrl10 from "../assets/sunglasses-10.png"
 
 export default [
   {
@@ -45,18 +45,20 @@ export default [
     overlayFile: overlayUrl4,
     cp_offsets: {
       cp_x: 330,
-      cp_y: 45
+      cp_y: 55
     },
-    width: 670
+    width: 670,
+    verticalRotationPoint: 22
   },
   {
     id: 4,
     overlayFile: overlayUrl5,
     cp_offsets: {
-      cp_x: 433,
-      cp_y: 81
+      cp_x: 430,
+      cp_y: 60
     },
-    width: 860
+    width: 860,
+    verticalRotationPoint: 29
   },
   {
     id: 5,
@@ -65,7 +67,8 @@ export default [
       cp_x: 675,
       cp_y: 120
     },
-    width: 1355
+    width: 1355,
+    verticalRotationPoint: 32
   },
   {
     id: 6,
@@ -74,16 +77,18 @@ export default [
       cp_x: 470,
       cp_y: 50
     },
-    width: 940
+    width: 940,
+    verticalRotationPoint: 27
   },
   {
     id: 7,
     overlayFile: overlayUrl8,
     cp_offsets: {
       cp_x: 595,
-      cp_y: 90
+      cp_y: 80
     },
-    width: 1212
+    width: 1212,
+    verticalRotationPoint: 32
   },
   {
     id: 8,
@@ -92,15 +97,17 @@ export default [
       cp_x: 445,
       cp_y: 95
     },
-    width: 902
+    width: 902,
+    verticalRotationPoint: 47
   },
   {
     id: 9,
     overlayFile: overlayUrl10,
     cp_offsets: {
-      cp_x: 580,
+      cp_x: 575,
       cp_y: 85
     },
-    width: 1164
+    width: 1164,
+    verticalRotationPoint: 29
   }
 ]
