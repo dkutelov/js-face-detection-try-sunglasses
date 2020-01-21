@@ -4,5 +4,7 @@ TO DO:
 - sunglasses location adjustment (4 buttons)
 - optional - animation on overlay
 - galery of preset images to have fun
-- deploy
+- if face not recognised after some secs
+- upload from iphone
+- photo rotation ?
 
