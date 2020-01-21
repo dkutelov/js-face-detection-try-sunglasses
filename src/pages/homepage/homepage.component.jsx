@@ -1,11 +1,11 @@
-import React, { Component } from "react"
-import * as faceapi from "face-api.js"
+import React, { Component } from 'react';
+import * as faceapi from 'face-api.js';
 
 // import componenets
-import PersonalPhoto from "../../components/personal-photo/personal-photo.component"
-import OverlayImage from "../../components/overlay-image/overlay-image.component"
-import OverlayList from "../../components/overlay-list/overlay-list.component"
-import UploadPersonalPhoto from "../../components/upload-personal-photo/upload-personal-photo.component"
+import PersonalPhoto from '../../components/personal-photo/personal-photo.component';
+import OverlayImage from '../../components/overlay-image/overlay-image.component';
+import OverlayList from '../../components/overlay-list/overlay-list.component';
+import UploadPersonalPhoto from '../../components/upload-personal-photo/upload-personal-photo.component';
 //import FacePoints from "../../components/utils/face-points.component"
 
 // import styled components
@@ -13,14 +13,14 @@ import {
   ImagesOuterContainer,
   ImagesContainer,
   MainContainer
-} from "./homepage.styles"
+} from './homepage.styles';
 
 // import data
-import overlayData from "../../components/utils/overlaysData.js"
-import presetPhotos from "../../components/utils/presetphotosData.js"
+import overlayData from '../../data/overlaysData';
+import presetPhotos from '../../data/presetphotosData';
 // functions import
-import { getOverlayValues } from "../../components/utils/getOverlayValues"
-import shortenOverlayData from "../../components/utils/shortentOverlayData.js"
+import { getOverlayValues } from '../../components/utils/getOverlayValues';
+import shortenOverlayData from '../../components/utils/shortentOverlayData.js';
 
 const initialValues = {
   personalPhoto: null,
@@ -29,72 +29,72 @@ const initialValues = {
   landmarks: null,
   loading: false,
   facePoints: []
-}
+};
 
 class HomePage extends Component {
   state = {
     ...initialValues
-  }
+  };
 
   resetForNewPhoto = () => {
-    this.setState({ ...initialValues })
-  }
+    this.setState({ ...initialValues });
+  };
 
   setPersonalPhoto = async personalPhoto => {
-    this.setState({ loading: true })
+    this.setState({ loading: true });
     await this.setState({
       personalPhoto
-    })
-    this.loadModels()
-  }
+    });
+    this.loadModels();
+  };
 
   loadModels = async () => {
     await Promise.all([
-      faceapi.nets.tinyFaceDetector.loadFromUri("/models"),
-      faceapi.nets.faceLandmark68TinyNet.loadFromUri("/models")
+      faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
+      faceapi.nets.faceLandmark68TinyNet.loadFromUri('/models')
     ]).catch(error => {
-      console.error(error)
-    })
+      console.error(error);
+    });
 
-    const image = document.querySelector(".target-image")
+    const image = document.querySelector('.target-image');
 
     const detection = await faceapi
       .detectSingleFace(image, new faceapi.TinyFaceDetectorOptions())
-      .withFaceLandmarks(true)
+      .withFaceLandmarks(true);
 
     if (!detection) {
-      return
+      return;
     }
 
     this.setState({
       landmarks: detection.landmarks,
       loading: false,
       facePoints: detection.landmarks.positions
-    })
-  }
+    });
+  };
 
   overlayItemClickHandler = id => {
     if (!this.state.landmarks) {
-      return
+      return;
     }
 
-    const currentOvelayData = overlayData.filter(item => item.id === id)[0]
+    const currentOvelayData = overlayData.filter(item => item.id === id)[0];
 
     const overlay = {
       ...currentOvelayData
-    }
-    const image = document.querySelector(".target-image")
-    const { landmarks } = this.state
-    const overlayValues = getOverlayValues(landmarks, image, overlay)
+    };
+    const image = document.querySelector('.target-image');
+    const { landmarks } = this.state;
+    const overlayValues = getOverlayValues(landmarks, image, overlay);
 
     this.setState({
       overlayValues,
       overlayImg: currentOvelayData.overlayFile
-    })
-  }
+    });
+  };
 
   render() {
-    const { personalPhoto, overlayImg, overlayValues, loading } = this.state
+    const { personalPhoto, overlayImg, overlayValues, loading } = this.state;
     return (
       <MainContainer>
         <ImagesOuterContainer>
@@ -104,7 +104,7 @@ class HomePage extends Component {
                 personalPhoto={personalPhoto}
                 resetForNewPhoto={this.resetForNewPhoto}
                 loading={loading}
-                className="target-image"
+                className='target-image'
               />
             ) : (
               <UploadPersonalPhoto
@@ -126,10 +126,10 @@ class HomePage extends Component {
           onOverlayItemClick={this.overlayItemClickHandler}
         />
       </MainContainer>
-    )
+    );
   }
 }
 
 //<FacePoints facePoints={facePoints} overlayValues={overlayValues} />
 
-export default HomePage
+export default HomePage;
