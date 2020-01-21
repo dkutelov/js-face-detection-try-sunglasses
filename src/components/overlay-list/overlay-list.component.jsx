@@ -1,13 +1,18 @@
 import React from "react"
 import OverlayItem from "../overlay-item/overlay-item.component"
 
-import { OverlaysContainer, LoadingSpinner } from "./overlay-list.styles"
+import {
+  OverlaysWrapper,
+  OverlaysContainer,
+  LoadingSpinner,
+  OverlayHeading
+} from "./overlay-list.styles"
 import Loading from "../utils/loading.component"
 
 const OverlayList = ({ overlayItems, onOverlayItemClick, loading }) => {
   return (
-    <div style={{ width: "100%", position: "relative", marginTop: "50px" }}>
-      <h1>Select Sunglasses</h1>
+    <OverlaysWrapper>
+      <OverlayHeading>Select Sunglasses</OverlayHeading>
       <OverlaysContainer>
         {overlayItems.map(({ id, overlayFile }) => (
           <OverlayItem
@@ -23,7 +28,7 @@ const OverlayList = ({ overlayItems, onOverlayItemClick, loading }) => {
           <Loading />
         </LoadingSpinner>
       )}
-    </div>
+    </OverlaysWrapper>
   )
 }
 
