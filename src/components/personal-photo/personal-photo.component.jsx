@@ -6,14 +6,24 @@ import {
 
 import { Button } from '../utils/button.styles';
 
-const PersonalPhoto = ({ personalPhoto, resetForNewPhoto, loading }) => (
+const PersonalPhoto = ({
+  personalPhoto,
+  initiateFaceAnalysis,
+  resetForNewPhoto,
+  loading
+}) => (
   <PersonalPhotoImageContainer>
-    <PersonalPhotoImage src={personalPhoto} className='target-image' />
+    <PersonalPhotoImage
+      src={personalPhoto}
+      className='target-image'
+      onLoad={initiateFaceAnalysis}
+      crossOrigin='anonymous'
+    />
     <Button
       block
+      style={{ maxWidth: '50%', margin: '1em auto 0' }}
       onClick={resetForNewPhoto}
       disabled={loading}
-      style={{ maxWidth: '50%', margin: '1em auto 0' }}
     >
       Try Another Photo
     </Button>

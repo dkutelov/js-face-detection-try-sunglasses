@@ -40,12 +40,18 @@ class HomePage extends Component {
     this.setState({ ...initialValues });
   };
 
-  setPersonalPhoto = async personalPhoto => {
-    this.setState({ loading: true });
-    await this.setState({
+  setPersonalPhoto = personalPhoto => {
+    this.setState({
+      loading: true,
       personalPhoto
     });
-    this.loadModels();
+  };
+
+  initiateFaceAnalysis = () => {
+    setTimeout(() => {
+      console.log('recognise face ...');
+      this.loadModels();
+    }, 5000);
   };
 
   loadModels = async () => {
@@ -103,8 +109,9 @@ class HomePage extends Component {
               <PersonalPhoto
                 personalPhoto={personalPhoto}
                 resetForNewPhoto={this.resetForNewPhoto}
-                loading={loading}
                 className='target-image'
+                initiateFaceAnalysis={this.initiateFaceAnalysis}
+                loading={loading}
               />
             ) : (
               <UploadPersonalPhoto

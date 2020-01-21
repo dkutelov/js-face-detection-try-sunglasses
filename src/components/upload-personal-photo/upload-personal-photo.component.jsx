@@ -9,20 +9,23 @@ import {
 import PresetphotosList from '../presetphotos-list/presetphotos-list.component';
 
 const UploadPersonalPhoto = ({ setPersonalPhoto, presetPhotos }) => {
-  const uploadFile = e => {
+  const uploadFile = async e => {
     const file = e.target.files;
 
-    // Upload image to cloudinary; not used in this code
-    // faceapi detection errors with file fetched from cloudinary
     const data = new FormData();
     data.append('file', file[0]);
     data.append('upload_preset', 'sickfits');
-    // fetch("https://api.cloudinary.com/v1_1/dariku/image/upload", {
-    //   method: "POST",
-    //   body: data
-    // })
+    const res = await fetch(
+      'https://api.cloudinary.com/v1_1/dariku/image/upload',
+      {
+        method: 'POST',
+        body: data
+      }
+    );
 
-    setPersonalPhoto(URL.createObjectURL(file[0]));
+    const imageFile = await res.json();
+
+    setPersonalPhoto(imageFile.eager[0].secure_url);
   };
 
   const setDefaultFace = id => {
